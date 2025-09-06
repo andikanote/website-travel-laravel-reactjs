@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('transaction_id')->constrained('transactions')->onDelete('cascade');
+            $table->text('review')->nullable();
+            $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
+            $table->integer('rate_kebersihan');
+            $table->integer('rate_keakuratan');
+            $table->integer('rate_checkin');
+            $table->integer('rate_komunikasi');
+            $table->integer('rate_lokasi');
+            $table->integer('rate_nilaiekonomis');
             $table->timestamps();
         });
     }
