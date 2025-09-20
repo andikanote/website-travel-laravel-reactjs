@@ -28,7 +28,10 @@ class PermissionController extends Controller
             ->latest()
             ->paginate(6)->withQueryString();
 
-        return view('permissions.index', compact('permissions'));
+            return inertia('Permission/Index', [
+            'permissions' => $permissions,
+            'filters' => $request->only(['search']),
+        ]);
     }
 
     /**
@@ -36,7 +39,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Permission/Create');
     }
 
     /**
@@ -44,7 +47,15 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:255|unique:permissions,name',
+        ]);
+
+        Permission::create([
+            'name' => $request->name,
+        ]);
+
+        return to_route('permissions.index');
     }
 
     /**
@@ -58,24 +69,36 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Permission $permission)
     {
-        //
+        return inertia('Permission/Edit', [
+            'permission' => $permission,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Permission $permission)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:255|unique:permissions,name,' . $permission->id,
+        ]);
+
+        $permission->update([
+            'name' => $request->name,
+        ]);
+
+        return to_route('permissions.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+
+        return back();
     }
 }
