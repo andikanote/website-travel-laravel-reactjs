@@ -23,7 +23,7 @@
         "vite": "^7.0.4"
     },
     "dependencies": {
-        "@tabler/icons-react": "^3.34.1",
+        "@tabler/icons-react": "^3.35.0",
         "clsx": "^2.1.1",
         "sweetalert2": "^11.23.0"
     }

@@ -1,11 +1,11 @@
-import { useFrom } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
 import { IconSearch } from '@tabler/icons-react';
 import React from 'react'
 
 export default function Search({ placeholder, url }) {
 
     // define useForm inertia
-    const { data, setData, get } = useFrom({
+    const { data, setData, get } = useForm({
         search: '',
     });
 

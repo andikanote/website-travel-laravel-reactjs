@@ -21,14 +21,14 @@ class PermissionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $permissions = Permission::select('id', 'name')
-            ->when($request->search, fn($search) => $search->where('name', 'like', '%' . $request->search . '%'))
+            ->when($request->search, fn($query) => $query->where('name', 'like', '%' . $request->search . '%'))
             ->latest()
             ->paginate(6)->withQueryString();
 
-            return inertia('Permission/Index', [
+        return inertia('Permission/Index', [
             'permissions' => $permissions,
             'filters' => $request->only(['search']),
         ]);

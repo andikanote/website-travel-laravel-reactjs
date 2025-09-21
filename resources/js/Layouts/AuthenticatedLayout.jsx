@@ -1,10 +1,12 @@
+// AuthenticatedLayout.jsx
+
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
-import hasAnyPermission from 'resources/Utils/Permission';
+import hasAnyPermission from '@/Utils/Permission';
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
@@ -32,6 +34,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Dashboard
                                 </NavLink>
 
+                                {/* Penggunaan fungsi hasAnyPermission yang sudah diperbaiki */}
                                 {hasAnyPermission(user, ['permissions index']) && (
                                     <NavLink
                                         href={route('permissions.index')}
@@ -40,6 +43,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                         Permissions
                                     </NavLink>
                                 )}
+
                             </div>
                         </div>
 
