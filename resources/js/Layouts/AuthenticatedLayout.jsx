@@ -34,13 +34,21 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Dashboard
                                 </NavLink>
 
-                                {/* Penggunaan fungsi hasAnyPermission yang sudah diperbaiki */}
                                 {hasAnyPermission(user, ['permissions index']) && (
                                     <NavLink
                                         href={route('permissions.index')}
                                         active={route().current('permissions*')}
                                     >
                                         Permissions
+                                    </NavLink>
+                                )}
+
+                                {hasAnyPermission(user, ['roles index']) && (
+                                    <NavLink
+                                        href={route('roles.index')}
+                                        active={route().current('roles*')}
+                                    >
+                                        Roles
                                     </NavLink>
                                 )}
 
@@ -154,6 +162,14 @@ export default function AuthenticatedLayout({ header, children }) {
                                 active={route().current('permissions*')}
                             >
                                 Permissions
+                            </ResponsiveNavLink>
+                        )}
+                        {hasAnyPermission(user, ['roles index']) && (
+                            <ResponsiveNavLink
+                                href={route('roles.index')}
+                                active={route().current('roles*')}
+                            >
+                                Roles
                             </ResponsiveNavLink>
                         )}
                     </div>

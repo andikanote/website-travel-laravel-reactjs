@@ -1,9 +1,9 @@
 import { Link, useForm } from '@inertiajs/react';
-import { IconArrowBackUp, IconCheck, IconPencilCog, IconTrash, IconPlus } from '@tabler/icons-react';
+import { IconArrowBack, IconCheck, IconPencilCog, IconTrash, IconPlus } from '@tabler/icons-react';
 import React from 'react';
 import Swal from 'sweetalert2';
 
-export default function Button() {
+export default function Button(type, url, className, children, ...props) {
     const { delete: destroy } = useForm();
 
     const handleDeleteData = async (url) => {

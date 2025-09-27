@@ -8,7 +8,7 @@ import Button from '@/Components/Button'
 import Card from '@/Components/Card'
 import Swal from 'sweetalert2'
 
-export default function Edit(auth) {
+export default function Edit({auth}) {
     // Destructure permission form usePage props
     const { permission } = usePage().props;
 

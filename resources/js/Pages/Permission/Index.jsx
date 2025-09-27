@@ -9,7 +9,7 @@ import Search from '@/Components/Search';
 import { Head, usePage } from '@inertiajs/react';
 import hasAnyPermission from '@/Utils/Permission';
 
-export default function Index({ auth }) {
+export default function Index({auth}) {
     const { permissions, filters } = usePage().props;
 
     // Untuk debugging, pastikan data permission terkirim ke sini
@@ -52,11 +52,9 @@ export default function Index({ auth }) {
                                             <Table.Td>{permission.name}</Table.Td>
                                             <Table.Td>
                                                 <div className='flex items-center gap-2'>
-                                                    {/* Penamaan ini SUDAH BENAR sesuai seeder */}
                                                     {hasAnyPermission(['permissions edit']) &&
                                                         <Button type={'edit'} url={route('permissions.edit', permission.id)} />
                                                     }
-                                                    {/* Penamaan ini SUDAH BENAR sesuai seeder */}
                                                     {hasAnyPermission(['permissions delete']) &&
                                                         <Button type={'delete'} url={route('permissions.destroy', permission.id)} />
                                                     }

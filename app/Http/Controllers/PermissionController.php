@@ -26,7 +26,7 @@ class PermissionController extends Controller
         $permissions = Permission::select('id', 'name')
             ->when($request->search, fn($query) => $query->where('name', 'like', '%' . $request->search . '%'))
             ->latest()
-            ->paginate(6)->withQueryString();
+            ->paginate(5);
 
         return inertia('Permission/Index', [
             'permissions' => $permissions,
